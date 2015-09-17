@@ -1,6 +1,6 @@
 {
   "name": "svg2react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SVG to React component converter",
   "scripts": {
     "start": "node server.js",
@@ -44,6 +44,7 @@
     "htmltojsx": "^0.2.4",
     "json-loader": "^0.5.2",
     "react-ace": "^2.3.0",
+    "react-github-fork-ribbon": "^0.4.1",
     "react-split-pane": "^0.1.10",
     "react-transform-catch-errors": "^0.1.1",
     "react-transform-webpack-hmr": "^0.1.2",

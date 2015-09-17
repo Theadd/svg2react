@@ -12,8 +12,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      IN_BROWSER: true,
-      'process.env.NODE_ENV': '"production"'
+      IN_BROWSER: true
     })
   ],
   resolve: {

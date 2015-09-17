@@ -81,3 +81,19 @@ a:hover {
 .ace_tooltip {
     visibility: hidden;
 }
+
+/* GITHUB FORK RIBBON */
+
+.github-fork-ribbon a {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.ace_editor.ace-ambiance .ace_fold-widget.ace_start:after {
+    content: "\25be";
+}
+
+.ace_editor.ace-ambiance .ace_fold-widget.ace_closed:after {
+    content: "\2023";
+}
