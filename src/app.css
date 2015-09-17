@@ -89,3 +89,11 @@ a:hover {
     padding: 0;
     font-weight: normal;
 }
+
+.ace_editor.ace-ambiance .ace_fold-widget.ace_start:after {
+    content: "\25be";
+}
+
+.ace_editor.ace-ambiance .ace_fold-widget.ace_closed:after {
+    content: "\2023";
+}

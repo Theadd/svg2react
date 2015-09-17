@@ -4,7 +4,7 @@ import HTMLtoJSX from 'htmltojsx'
 import generate from './codegen'
 
 const REG_TAG = /<([^\/\s>]+?)\s([^>]+?)(\s*\/*>)/g
-const REG_ATTRS = /(?:[\w:\-]*) *= *["\{](?:(?:(?:(?:(?:\\\W)*\\\W)*[^"\{]*)\\\W)*[^"\}]*["\}])/g
+const REG_ATTRS = /(?:[\w:\-]*) *= *["\{]\{?(?:(?:(?:(?:(?:\\\W)*\\\W)*[^"\{]*)\\\W)*[^"}]*["}]}*)/g
 const REG_ATTR = /([^=]+?)=(.*)/
 const validAttrs = [
   'clipPath', 'cx', 'cy', 'd', 'dx', 'dy', 'fill', 'fillOpacity', 'fontFamily', 'fontSize', 'fx', 'fy',
@@ -13,7 +13,7 @@ const validAttrs = [
   'stopColor', 'stopOpacity', 'stroke', 'strokeDasharray', 'strokeLinecap', 'strokeOpacity', 'strokeWidth',
   'textAnchor', 'transform', 'version', 'viewBox', 'x1', 'x2', 'x', 'y1', 'y2', 'y', 'id', 'width', 'height',
   'xlinkActuate', 'xlinkArcrole', 'xlinkHref', 'xlinkRole', 'xlinkShow', 'xlinkTitle', 'xlinkType', 'xmlBase',
-  'xmlLang', 'xmlSpace', 'xmlns'
+  'xmlLang', 'xmlSpace', 'style'
 ]
 const validAttrsLC = validAttrs.map(attr => attr.toLowerCase())
 const indexOfId = validAttrs.indexOf('id')
@@ -65,9 +65,9 @@ function replacer (match, tagName, attributes, closingCharacters) {
       const indexWithinValids = validAttrsLC.indexOf(name.replace(/\W/g, ''))
       if (indexWithinValids === -1) {
         val = val.replace(/^\{(.*?)}$/g, '$1')
-        dynamicAttrs.push(`'${name}': ${val}`)
+        tagName !== 'svg' && dynamicAttrs.push(`'${name}': ${val}`)
       } else {
-        val = val.replace(/^\{(.*?)}$/g, '{ $1 }')
+        val = val.startsWith('{{') ? val.replace(/^\{\{(.*?)}}$/g, '{{ $1 }}') : val.replace(/^\{(.*?)}$/g, '{ $1 }')
         indexOfId === indexWithinValids && (linkAs = val)
         staticAttrs.push(`${validAttrs[indexWithinValids]}=${val}`)
       }
