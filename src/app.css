@@ -81,3 +81,11 @@ a:hover {
 .ace_tooltip {
     visibility: hidden;
 }
+
+/* GITHUB FORK RIBBON */
+
+.github-fork-ribbon a {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
